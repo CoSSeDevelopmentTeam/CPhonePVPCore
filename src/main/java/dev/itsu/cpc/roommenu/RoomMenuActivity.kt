@@ -1,7 +1,7 @@
 package dev.itsu.cpc.roommenu
 
 import dev.itsu.cpc.MainActivity
-import dev.itsu.pvpcore.api.PVPCoreAPI
+import dev.itsu.pvpcore.api.RoomManagementAPI
 import net.comorevi.cphone.cphone.application.ApplicationManifest
 import net.comorevi.cphone.cphone.model.Bundle
 import net.comorevi.cphone.cphone.model.ListResponse
@@ -20,7 +20,7 @@ class RoomMenuActivity(manifest: ApplicationManifest) : ListActivity(manifest) {
             0 -> RoomListActivity(manifest).start(bundle)
             1 -> RoomSearchActivity(manifest).start(bundle)
             2 -> randomActivity()
-            3 -> RoomDetailsActivity(manifest, PVPCoreAPI.Factory.getInstance().getEntryingRoom(response.player.name)).start(bundle)
+            3 -> RoomDetailsActivity(manifest, RoomManagementAPI.getInstance().getEntryingRoom(response.player.name)).start(bundle)
             else -> MainActivity(manifest).start(bundle)
         }
         return ReturnType.TYPE_CONTINUE
@@ -28,7 +28,7 @@ class RoomMenuActivity(manifest: ApplicationManifest) : ListActivity(manifest) {
 
     override fun onCreate(bundle: Bundle) {
         this.bundle = bundle
-        this.title = bundle.getString("title")
+        this.title = bundle.getString("rm_title")
         this.addButton(Button(bundle.getString("rm_list")))
         this.addButton(Button(bundle.getString("rm_search")))
         this.addButton(Button(bundle.getString("rm_random")))
@@ -36,7 +36,7 @@ class RoomMenuActivity(manifest: ApplicationManifest) : ListActivity(manifest) {
     }
 
     private fun randomActivity() {
-        val room = PVPCoreAPI.Factory.getInstance().rooms
+        val room = RoomManagementAPI.getInstance().rooms
                 .filter { !it.isPrivateRoom }
                 .random()
         RoomDetailsActivity(manifest, room).start(bundle)

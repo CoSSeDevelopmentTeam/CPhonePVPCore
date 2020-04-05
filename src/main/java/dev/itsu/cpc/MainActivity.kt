@@ -1,5 +1,6 @@
 package dev.itsu.cpc
 
+import dev.itsu.cpc.arenamenu.ArenaMenuActivity
 import dev.itsu.cpc.createmenu.CreateRoomMenuActivity
 import dev.itsu.cpc.roommenu.RoomMenuActivity
 import net.comorevi.cphone.cphone.application.ApplicationManifest
@@ -19,6 +20,7 @@ class MainActivity(manifest: ApplicationManifest) : ListActivity(manifest) {
         when (listResponse.buttonIndex) {
             0 -> RoomMenuActivity(manifest).start(bundle)
             1 -> CreateRoomMenuActivity(manifest).start(bundle)
+            2 -> ArenaMenuActivity(manifest).start(bundle)
             else -> return ReturnType.TYPE_END
         }
         return ReturnType.TYPE_CONTINUE
@@ -29,6 +31,7 @@ class MainActivity(manifest: ApplicationManifest) : ListActivity(manifest) {
         this.title = bundle.getString("title")
         this.addButton(Button(bundle.getString("m_join")))
         this.addButton(Button(bundle.getString("m_create")))
+        this.addButton(Button(bundle.getString("m_arena")))
         this.addButton(Button(bundle.getString("m_howto")))
     }
 

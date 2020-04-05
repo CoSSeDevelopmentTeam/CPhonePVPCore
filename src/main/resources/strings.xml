@@ -1,14 +1,17 @@
 <strings>
     <string name="title">PVPCore</string>
     <string name="back_to_home">メニューに戻る</string>
+    <string name="back">ひとつ前に戻る</string>
 
-    <string name="m_join">ルーム参加/退出</string>
+    <string name="m_join">§d§lルーム参加/退出</string>
     <string name="m_create">ルーム作成/削除</string>
+    <string name="m_arena">闘技場作成/削除</string>
     <string name="m_howto">遊び方・操作方法</string>
 
+    <string name="rm_title">PVPCore/§3参加</string>
     <string name="rm_list">ルーム一覧</string>
     <string name="rm_search">ルームIDで検索</string>
-    <string name="rm_random">ランダムでエントリー</string>
+    <string name="rm_random">ランダムで参加</string>
     <string name="rm_leave">ルームを抜ける</string>
 
     <string name="rl_des">ルームをタップするとルーム詳細に移ります。ルームに参加した場合、作成中のルームは削除されます。</string>
@@ -23,24 +26,26 @@
     <string name="rd_leave">§c退出</string>
     <string name="rd_cannot_join">§f参加できません</string>
     <string name="rd_back">ルーム一覧に戻る</string>
+    <string name="rd_arena">§a闘技場: §f</string>
     <string name="rd_count">§a参加人数: §f</string>
-    <string name="rd_players">§f参加プレイヤー: §f</string>
+    <string name="rd_players">§a参加プレイヤー: §f</string>
     <string name="rd_id">§aルームid: §f</string>
     <string name="rd_cannot_join_des">§cこのルームには現在参加できません。</string>
     <string name="rd_joined">§aルームに参加しました!</string>
     <string name="rd_left">§cルームから退出しました。</string>
     <string name="rd_left_and_joined">§a参加していたルームを退出して参加しました。</string>
 
-    <string name="rs_title">ルームID検索</string>
+    <string name="rs_title">PVPCore/ルーム/§3ID検索</string>
     <string name="rs_des">検索するルームID（4桁の数字）を入力してください。</string>
     <string name="rs_notfound">§c該当するルームは見つかりませんでした。</string>
 
-    <string name="crm_title">ルーム作成/削除</string>
+    <string name="crm_title">PVPCore/§3ルーム</string>
     <string name="crm_create">ルーム作成</string>
     <string name="crm_delete">ルーム削除</string>
     <string name="crm_myroom">作成中のルーム</string>
     <string name="crm_already_created">§cあなた既にルームを作成しています。</string>
 
+    <string name="cr_title">PVPCore/ルーム/§3作成</string>
     <string name="cr_name">ルーム名（20文字以内）</string>
     <string name="cr_des">説明（100文字以内）</string>
     <string name="cr_arena">闘技場</string>
@@ -51,4 +56,23 @@
     <string name="cr_ex_count_des">§c説明は100文字以下である必要があります。</string>
     <string name="cr_ex_count">§c最低人数は最大人数以下である必要があります。</string>
     <string name="cr_created">§aルームを作成しました。§dルームID: §f</string>
+
+    <string name="am_title">PVPCore/§3闘技場</string>
+    <string name="am_create">新規闘技場を作成</string>
+    <string name="am_mine">作成した闘技場</string>
+    <string name="am_arenas">闘技場一覧</string>
+
+    <string name="ca_title">PVPCore/闘技場/§3作成</string>
+    <string name="ca_des">§r・§b現在いる場所が闘技場の中心§rとなります。（中心から半径5ブロックの範囲にプレイヤーがランダムでスポーンします。）\n§r・闘技場は最低でも中心から内壁まで5ブロック以上とる必要があります。</string>
+    <string name="ca_name">闘技場名（20文字以内）</string>
+    <string name="ca_ides">説明（50文字以内）</string>
+    <string name="ca_success">§a闘技場を作成しました。</string>
+    <string name="ca_error">§c名前・文字数は指定された範囲に収める必要があります。</string>
+
+    <string name="ca_title">PVPCore/闘技場/§3闘技場一覧</string>
+
+    <string name="ad_title">PVPCore/闘技場/§3闘技場詳細</string>
+    <string name="ad_id">§a闘技場ID: §f</string>
+    <string name="ad_author">§a制作者: §f</string>
+    <string name="ad_loc">§a位置: §f</string>
 </strings>

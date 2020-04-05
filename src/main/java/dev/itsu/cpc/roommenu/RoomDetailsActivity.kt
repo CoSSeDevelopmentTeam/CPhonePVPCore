@@ -2,7 +2,8 @@ package dev.itsu.cpc.roommenu
 
 import cn.nukkit.utils.TextFormat
 import dev.itsu.cpc.MainActivity
-import dev.itsu.pvpcore.api.PVPCoreAPI
+import dev.itsu.pvpcore.api.ArenaManagementAPI
+import dev.itsu.pvpcore.api.RoomManagementAPI
 import dev.itsu.pvpcore.game.GameState
 import dev.itsu.pvpcore.model.MatchRoom
 import net.comorevi.cphone.cphone.application.ApplicationManifest
@@ -19,14 +20,14 @@ class RoomDetailsActivity(manifest: ApplicationManifest, private val room: Match
 
     override fun onStop(response: Response): ReturnType {
         val modalResponse = response as ModalResponse
-        var text = ""
+        var text: String
 
-        if (response.isButton2Clicked || !response.isButton1Clicked) {
+        if (!response.isButton1Clicked) {
             RoomListActivity(manifest).start(bundle)
             return ReturnType.TYPE_CONTINUE
         }
 
-        val gameAPI = PVPCoreAPI.Factory.getInstance()
+        val gameAPI = RoomManagementAPI.getInstance()
         text =
                 if (room.state == GameState.STATE_WAITING) {
                     if (room.owner == bundle.cPhone.player.name) {
@@ -70,7 +71,7 @@ class RoomDetailsActivity(manifest: ApplicationManifest, private val room: Match
                 if (room.owner == bundle.cPhone.player.name) {
                     bundle.getString("rd_back")
 
-                } else if (PVPCoreAPI.Factory.getInstance().isEntrying(bundle.cPhone.player.name) && !room.joiners.contains(bundle.cPhone.player.name)) {
+                } else if (RoomManagementAPI.getInstance().isEntrying(bundle.cPhone.player.name) && !room.joiners.contains(bundle.cPhone.player.name)) {
                     bundle.getString("rd_left_and_join")
 
                 } else if (room.joiners.contains(bundle.cPhone.player.name)) {
@@ -95,6 +96,7 @@ class RoomDetailsActivity(manifest: ApplicationManifest, private val room: Match
                     ${TextFormat.RESET}${room.description}
                     
                     ${bundle.getString("rd_id")}${room.id}
+                    ${bundle.getString("rd_arena")}${ArenaManagementAPI.getInstance().getArenaById(room.arenaId).name}
                     ${bundle.getString("rd_count")}${room.joiners.size}/${room.maxCount}
                     ${bundle.getString("rd_players")}${players}
                 """.trimIndent()

@@ -1,7 +1,9 @@
 package dev.itsu.cpc.createmenu
 
 import dev.itsu.cpc.MainActivity
-import dev.itsu.pvpcore.api.PVPCoreAPI
+import dev.itsu.pvpcore.api.ArenaManagementAPI
+import dev.itsu.pvpcore.api.RoomManagementAPI
+import dev.itsu.pvpcore.model.Arena
 import net.comorevi.cphone.cphone.application.ApplicationManifest
 import net.comorevi.cphone.cphone.model.Bundle
 import net.comorevi.cphone.cphone.model.CustomResponse
@@ -13,6 +15,7 @@ import net.comorevi.cphone.cphone.widget.element.Dropdown
 import net.comorevi.cphone.cphone.widget.element.Input
 import net.comorevi.cphone.cphone.widget.element.Slider
 import net.comorevi.cphone.cphone.widget.element.Toggle
+import sun.security.x509.AVA
 
 class CreateRoomActivity(manifest: ApplicationManifest) : CustomActivity(manifest) {
 
@@ -24,7 +27,7 @@ class CreateRoomActivity(manifest: ApplicationManifest) : CustomActivity(manifes
 
         val name = customResponse.result[0].toString()
         val description = customResponse.result[1].toString()
-        val arena = customResponse.result[2].toString()
+        val arena = customResponse.result[2].toString().substring(2)
         val max = customResponse.result[3].toString().toFloat().toInt()
         val min = customResponse.result[4].toString().toFloat().toInt()
         val private = customResponse.result[5].toString().toBoolean()
@@ -46,14 +49,14 @@ class CreateRoomActivity(manifest: ApplicationManifest) : CustomActivity(manifes
 
         if (!error) {
             text = bundle.getString("cr_created") +
-                    PVPCoreAPI.Factory.getInstance().createRoom(
+                    RoomManagementAPI.getInstance().createRoom(
                             response.player.name,
                             name,
                             description,
                             max,
                             min,
                             private,
-                            0
+                            ArenaManagementAPI.getInstance().getArenaByName(arena).id
                     )
         }
 
@@ -72,9 +75,16 @@ class CreateRoomActivity(manifest: ApplicationManifest) : CustomActivity(manifes
     override fun onCreate(bundle: Bundle) {
         this.bundle = bundle
         this.title = bundle.getString("crm_create")
+
+        val arenas = mutableListOf<String>();
+        ArenaManagementAPI.getInstance().notUsedArenas.forEach {
+            if (it.status == Arena.Status.RESERVED) arenas.add("§e${it.name}")
+            else arenas.add("§f${it.name}")
+        }
+
         this.addFormElement(Input(bundle.getString("cr_name")))
         this.addFormElement(Input(bundle.getString("cr_des")))
-        this.addFormElement(Dropdown(bundle.getString("cr_arena"), listOf("test")))
+        this.addFormElement(Dropdown(bundle.getString("cr_arena"), arenas))
         this.addFormElement(Slider(bundle.getString("cr_max"), 2.0F, 6.0F, 1.0F, 2.0F))
         this.addFormElement(Slider(bundle.getString("cr_min"), 2.0F, 6.0F, 1.0F, 2.0F))
         this.addFormElement(Toggle(bundle.getString("cr_private"), false))

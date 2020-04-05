@@ -2,7 +2,7 @@ package dev.itsu.cpc.roommenu
 
 import cn.nukkit.Player
 import dev.itsu.cpc.MainActivity
-import dev.itsu.pvpcore.api.PVPCoreAPI
+import dev.itsu.pvpcore.api.RoomManagementAPI
 import dev.itsu.pvpcore.game.GameState
 import net.comorevi.cphone.cphone.application.ApplicationManifest
 import net.comorevi.cphone.cphone.model.Bundle
@@ -29,7 +29,7 @@ class RoomListActivity(manifest: ApplicationManifest) : ListActivity(manifest) {
         this.title = bundle.getString("title")
         this.content = bundle.getString("rl_des")
 
-        PVPCoreAPI.Factory.getInstance().rooms
+        RoomManagementAPI.getInstance().rooms
                 .filter { !it.isPrivateRoom }
                 .shuffled()
                 .sortedBy { it.state == GameState.STATE_WAITING }
@@ -41,7 +41,7 @@ class RoomListActivity(manifest: ApplicationManifest) : ListActivity(manifest) {
                         GameState.STATE_FINISHED -> bundle.getString("rl_finished")
                     }
 
-                    addButton(object : Button("${it.name} [${it.joiners.size}/${it.maxCount}\n${status}]") {
+                    addButton(object : Button("${it.name} [${it.joiners.size}/${it.maxCount}]\n${status}") {
                         override fun onClick(player: Player) {
                             RoomDetailsActivity(manifest, it).start(bundle)
                         }

@@ -1,7 +1,7 @@
 package dev.itsu.cpc.createmenu
 
 import dev.itsu.cpc.MainActivity
-import dev.itsu.pvpcore.api.PVPCoreAPI
+import dev.itsu.pvpcore.api.RoomManagementAPI
 import net.comorevi.cphone.cphone.application.ApplicationManifest
 import net.comorevi.cphone.cphone.model.Bundle
 import net.comorevi.cphone.cphone.model.ListResponse
@@ -19,7 +19,7 @@ class CreateRoomMenuActivity(manifest: ApplicationManifest) : ListActivity(manif
         val listResponse = response as ListResponse
         when (listResponse.buttonIndex) {
             0 -> {
-                if (!PVPCoreAPI.Factory.getInstance().isEntrying(response.player.name)) {
+                if (!RoomManagementAPI.getInstance().isEntrying(response.player.name)) {
                     CreateRoomActivity(manifest).start(bundle)
                 } else {
                     MessageActivity(

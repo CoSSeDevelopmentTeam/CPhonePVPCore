@@ -1,7 +1,7 @@
 package dev.itsu.cpc.roommenu
 
 import dev.itsu.cpc.MainActivity
-import dev.itsu.pvpcore.api.PVPCoreAPI
+import dev.itsu.pvpcore.api.RoomManagementAPI
 import net.comorevi.cphone.cphone.application.ApplicationManifest
 import net.comorevi.cphone.cphone.model.Bundle
 import net.comorevi.cphone.cphone.model.CustomResponse
@@ -19,7 +19,7 @@ class RoomSearchActivity(manifest: ApplicationManifest) : CustomActivity(manifes
         val id = customResponse.result[0].toString().toIntOrNull()
 
         if (id != null) {
-            val room = PVPCoreAPI.Factory.getInstance().getRoomById(id)
+            val room = RoomManagementAPI.getInstance().getRoomById(id)
             if (room != null) {
                 RoomDetailsActivity(manifest, room).start(bundle)
                 return ReturnType.TYPE_CONTINUE
