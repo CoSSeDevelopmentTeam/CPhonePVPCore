@@ -21,6 +21,7 @@ class MainActivity(manifest: ApplicationManifest) : ListActivity(manifest) {
             0 -> RoomMenuActivity(manifest).start(bundle)
             1 -> CreateRoomMenuActivity(manifest).start(bundle)
             2 -> ArenaMenuActivity(manifest).start(bundle)
+            // TODO Start an activity that explains how to play PVP | 3 -> ExplainActivity(manifest).start(bundle)
             else -> return ReturnType.TYPE_END
         }
         return ReturnType.TYPE_CONTINUE
