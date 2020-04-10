@@ -10,6 +10,7 @@
         <mcbeversion>1.14.0</mcbeversion>
         <icon>https://pbs.twimg.com/profile_images/1201136789492092930/8SfNTu5G_400x400.jpg</icon>
         <iconType>url</iconType>
+        <initialize>dev.itsu.cpc.EventInitializer</initialize>
     </application>
 
     <permission type="default"/>
